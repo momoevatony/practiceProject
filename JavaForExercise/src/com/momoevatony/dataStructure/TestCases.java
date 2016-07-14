@@ -14,7 +14,7 @@ public class TestCases {
 		}
 		System.out.println(testStack.isEmpty());
 		
-		*/
+		
 		
 		//Queue Test
 		Queue testQueue = new Queue();
@@ -26,7 +26,15 @@ public class TestCases {
 			System.out.println(testQueue.pop());
 		}
 		System.out.println(testQueue.isEmpty());
+		*/
 		
+		String input = "t";
+		System.out.println(test(input));
+		
+	}
+	
+	static String test(String input){
+		return input.length()>=2 ? Character.toString(input.charAt(0)).concat(Integer.toString(input.length()-2)).concat(Character.toString(input.charAt(input.length()-1))) : input;
 	}
 
 }
