@@ -50,20 +50,24 @@ public class VisitTreeNodes {
 	}
 	
 	static void visitTreeNodeIn (TreeNode root){
-		//TODO
-		//Not finished by 7/21/2016 3:48pm
 		
 		Stack <TreeNode> stack = new Stack<TreeNode> ();
 		TreeNode curr = root;
-		while(curr!=null){
-			if(curr.right!=null){stack.push(curr.right);}
-			stack.push(curr);
-			curr=curr.left;
-		}
-		while(!stack.isEmpty()){
-			System.out.print(stack.pop().data);
+		while(curr!=null || !stack.isEmpty()){
+			while(curr!= null){
+				stack.push(curr);
+				curr=curr.left;
+			}
+			if (!stack.isEmpty()){
+				curr=stack.pop();
+				System.out.print(curr.data);
+				curr=curr.right;
+			}
 		}
 	}
 	
+	static void visitTreeNodePost (TreeNode root){
+		//TODO 7/22/2016
+	}
 	
 }
