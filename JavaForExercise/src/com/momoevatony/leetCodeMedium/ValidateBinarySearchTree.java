@@ -48,11 +48,12 @@ public class ValidateBinarySearchTree {
 		return true;
     }
 	
+	//Accepted on 7.24.2016
+	
 	public static boolean isValidBST2(TreeNode root) {
 		Stack <TreeNode> stack = new Stack<TreeNode>();
 		Stack <Integer> values = new Stack<Integer>();
 		TreeNode curr = root;
-		int check;
 		while(!stack.isEmpty() || curr!=null){
 			while(curr!=null){
 				stack.push(curr);
@@ -60,7 +61,6 @@ public class ValidateBinarySearchTree {
 			}
 			if(!stack.isEmpty()){
 				curr=stack.pop();
-				System.out.print(curr.data+ " ");
 				if(!values.isEmpty() && curr.data<values.peek()){return false;}
 				values.push(curr.data);
 				curr=curr.right;

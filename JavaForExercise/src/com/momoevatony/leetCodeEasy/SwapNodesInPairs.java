@@ -23,6 +23,9 @@ public class SwapNodesInPairs {
 			l2=l2.next;
 		}
 	}
+	
+	//Accepted 7.24.2016
+	
 	static ListNode swapPairs(ListNode head){
 		if(head == null) {return null;}
 		if(head.next == null) {return head;}

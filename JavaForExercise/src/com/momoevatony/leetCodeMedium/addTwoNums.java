@@ -30,6 +30,8 @@ public class addTwoNums {
 		}
 	}
 	
+	//Accepted on 7.24.2016
+	
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		if(l1 == null && l2 ==null) {return null;}
 		if(l1 == null || l2 ==null) {return l1==null ? l2:l1;}
@@ -47,6 +49,7 @@ public class addTwoNums {
         	curr.next = new ListNode(newNum%10);
         	curr=curr.next;
         }
+        if(carry == 1){curr.next=new ListNode(1);} //7.24.2016 Note: 写的时候没有考虑首位进位的问题，需注意。
         head = head.next;
         return head;
     }

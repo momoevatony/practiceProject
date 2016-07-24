@@ -31,7 +31,6 @@ public class WordLadder {
 		
 		while(index< list.size()){
 			curr = list.get(index);
-			System.out.println("Working on: "+curr);
 			if(differByOne(curr,endWord)){return map.get(curr)+1;}
 			
 			for(String str:wordList){
@@ -42,7 +41,6 @@ public class WordLadder {
 			}
 			index++;
 		}
-		
         return 0;
     }
 	

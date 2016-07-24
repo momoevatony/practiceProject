@@ -13,6 +13,8 @@ public class Combinations {
 		}
 	}
 	
+	//Accepted on 7.24.2016
+	
 	static List<List<Integer>> combine(int n, int k) {
 		List<List<Integer>> list = new ArrayList<List<Integer>>();
 		if(n == k){return nEqualk(n,k);}
