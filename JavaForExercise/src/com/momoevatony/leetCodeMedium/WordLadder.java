@@ -21,12 +21,15 @@ public class WordLadder {
 		System.out.print(Arrays.toString(array.toArray()));*/
 		String beginWord = "hit";
 		String endWord = "cog";
-		Set<String> wordList = new HashSet<String>(Arrays.asList("hot","dot","dog","lot","log"));
+		Set<String> wordList = new HashSet<String>(Arrays.asList("hot","cog","dot","dog","lot","log"));
 		
-		System.out.println(ladderLength2(beginWord, endWord, wordList));
+		
+		System.out.println(ladderLength(beginWord, endWord, wordList));
 		
 	}
 	
+	
+	//Accepted on 7.25.2016
 	public static int ladderLength(String beginWord, String endWord, Set<String> wordList) {
 		HashMap <String, Integer> map = new HashMap<String, Integer>();
 		List<String> list= new ArrayList<String>();
@@ -34,20 +37,31 @@ public class WordLadder {
 		String curr;
 		map.put(beginWord, 1);
 		list.add(beginWord);
+		if(wordList.contains(beginWord)){wordList.remove(beginWord);}
 		
 		while(index<list.size()){
 			curr = list.get(index);
+			if(curr.equals(endWord)){return map.get(curr);}
+			if(differByOne(curr,endWord)){return map.get(curr)+1;}
 			for (int i=0; i<curr.length();i++){
-				for(char j='a';j<'z';j++){
-					
+				char[] currSet = curr.toCharArray();
+				for(char j='a';j<='z';j++){
+					currSet[i]=j;
+					if(wordList.contains(String.valueOf(currSet))){
+						//System.out.println("String: "+String.valueOf(currSet)+" value: "+(map.get(curr)+1));
+						list.add(String.valueOf(currSet));
+						map.put(String.valueOf(currSet), map.get(curr)+1);
+						wordList.remove(String.valueOf(currSet));
+					}
 				}
 			}
+			index++;
 		}
-		
-		
 		return 0;
 	}
 	
+	
+	//Taking toooooo long time
 	public static int ladderLength3(String beginWord, String endWord, Set<String> wordList) {
 		HashMap <String, Integer> map = new HashMap <String, Integer>();
 		List<String> list = new ArrayList<String>();
@@ -77,6 +91,8 @@ public class WordLadder {
         return 0;
     }
 	
+	
+	//still taking too long time, and having errors.
 	public static int ladderLength2(String beginWord, String endWord, Set<String> wordList) {
 		HashMap <String, Integer> startMap = new HashMap <String, Integer>();
 		HashMap <String, Integer> endMap = new HashMap <String, Integer>();
