@@ -1,6 +1,9 @@
 package com.momoevatony.dataStructure;
 
 import com.momoevatony.dataStructure.TreeNode;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class VisitTreeNodes {
@@ -23,6 +26,8 @@ public class VisitTreeNodes {
 		visitTreeNodesRecur(root,2);
 		System.out.println();
 		visitTreeNodeIn(root);
+		System.out.println();
+		visitTreeNodeLevel(root);
 		
 		
 	}
@@ -68,6 +73,20 @@ public class VisitTreeNodes {
 	
 	static void visitTreeNodePost (TreeNode root){
 		//TODO 7/22/2016
+	}
+	
+	static void visitTreeNodeLevel (TreeNode root){
+		List<TreeNode> queue = new ArrayList<TreeNode>();
+		queue.add(root);
+		TreeNode curr = new TreeNode();
+		int index = 0;
+		while(index<queue.size()){
+			curr=queue.get(index);
+			System.out.print(curr.data);
+			if(curr.left != null){queue.add(curr.left);}
+			if(curr.right != null){queue.add(curr.right);}
+			index++;
+		}
 	}
 	
 }

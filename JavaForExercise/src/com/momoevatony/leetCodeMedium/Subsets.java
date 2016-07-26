@@ -7,7 +7,7 @@ import java.util.List;
 public class Subsets {
 	
 	public static void main (String args[]){
-		int[] nums = {1,2};
+		int[] nums = {1,2,3};
 		List<List<Integer>> list = subsets(nums);
 		for(List<Integer>innerList:list){
 			System.out.println(Arrays.toString(innerList.toArray()));
@@ -17,8 +17,11 @@ public class Subsets {
 		
 	}
 	
+	//Accepted on 7.25.2016
+	
 	public static List<List<Integer>> subsets(int[] nums) {
 		List<List<Integer>> list = new ArrayList<List<Integer>>();
+		list.add(new ArrayList<Integer>()); //this line adds an empty array in the list!
 		if (nums.length<=0){return list;}
 		if (nums.length == 1) {list.add(Arrays.asList(nums[0])); return list;}
         
@@ -26,7 +29,6 @@ public class Subsets {
     }
 
 	public static List<List<Integer>> addOneElement(List<List<Integer>> list, int n){
-		System.out.println("called n: "+n+" list length: "+list.size());
 		List<List<Integer>> newList = new ArrayList<List<Integer>>(list);
 		int index = 0;
 		while (index<list.size()){
