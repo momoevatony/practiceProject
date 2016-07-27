@@ -12,22 +12,21 @@ public class GenerateParentheses {
 			System.out.println(str);
 		}
 	}
+	
+	//Accepted on 7.26.2016
     public static List<String> generateParenthesis(int n) {
+    	List<String> list = new ArrayList<String>();
         if(n==1){return Arrays.asList("()");}
-        return addOneToList(generateParenthesis(n-1));
+        String curr = "";
+        generateByOne(curr, n, n, list);
+        return list; 
     }
     
-    static List<String> addOneToList(List<String> list){
-    	List <String> newList = new ArrayList<String>();
-    	String newStr = "";
-    	for (String str: list){
-    		newStr = str+"()";
-    		if(!newList.contains(newStr)){newList.add(newStr);}
-    		newStr = "()"+str;
-    		if(!newList.contains(newStr)){newList.add(newStr);}
-    		newStr = "("+str+")";
-    		if(!newList.contains(newStr)){newList.add(newStr);}
-    	}
-    	return newList;
+    static void generateByOne(String curr, int left, int right, List<String> list){
+    	if(left == 0 && right == 0){list.add(curr);}
+    	
+    	if(left > 0) {generateByOne(curr+"(", left-1, right, list);}
+    	if(left < right) {generateByOne(curr+")", left, right-1, list);}
+
     }
 }
