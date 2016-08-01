@@ -3,6 +3,7 @@ package com.momoevatony.leetCodeMedium;
 import java.util.Stack;
 
 public class UniquePaths {
+	
 	public int uniquePaths2(int m, int n) {
 		Stack<Node> stack = new Stack<Node>();
 		Node curr = new Node(0,0);

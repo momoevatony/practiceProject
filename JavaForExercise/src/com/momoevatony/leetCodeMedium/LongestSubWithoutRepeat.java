@@ -22,19 +22,15 @@ public class LongestSubWithoutRepeat {
 		HashMap<Character,Integer> map = new HashMap<Character,Integer>();
 		for(int i=0; i<=s.length()-1;i++){
 			if(map.containsKey(s.charAt(i)) && map.get(s.charAt(i))>=start){
-				//System.out.println("found duplicate: "+s.charAt(i));
 				currLength = currLength - (map.get(s.charAt(i))-start);
 				start = map.get(s.charAt(i))+1;
 				map.put(s.charAt(i),i);
-				//System.out.println("currLenth reduced to: "+currLength+" and curr block starts from: "+start+" to: "+i);
 				
 			}
 			else{
-				//System.out.println("Adding: "+s.charAt(i)+" at inex: "+i);
 				map.put(s.charAt(i),i);
 				currLength++; 
 				maxLength = currLength>maxLength? currLength:maxLength;
-				//System.out.print("now max length is: "+maxLength);
 			}
 		}
         return maxLength;
