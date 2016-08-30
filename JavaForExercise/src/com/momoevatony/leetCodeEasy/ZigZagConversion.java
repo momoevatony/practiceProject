@@ -1,14 +1,15 @@
 package com.momoevatony.leetCodeEasy;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.momoevatony.dataStructure.Node;
 
 public class ZigZagConversion {
 	public static void main(String args[]){
-		System.out.println("final String is: "+convert("PAYPALISHIRING",3));
+		System.out.println("final String is: "+convert2("PAYPALISHIRING",3));
 	}
 	
-	public static String convert(String original, int rows){
+	public static String convert2(String original, int rows){
 		ArrayList<Queue> map = new ArrayList<Queue>();
 		for(int i=0;i<rows;i++){map.add(new Queue());}
 		boolean goingDown = true; //0 means going down, 1 means going up;
@@ -72,5 +73,36 @@ public class ZigZagConversion {
 			return first==null;
 		}
 	}
-
+	
+	public String convert(String s, int numRows) {
+		if(s.length()<=1){return s;}
+		int index = 0;
+		int mapIndex = 0;
+		boolean goingDown = true;
+		HashMap<Integer, String> map = new HashMap<Integer, String>();
+		while(index<s.length()){
+			char curr = s.charAt(index);
+			if(map.containsKey(mapIndex)){
+				map.put(mapIndex, map.get(mapIndex).concat(Character.toString(curr)));
+			}else{
+				map.put(mapIndex, Character.toString(curr));
+			}
+			if(goingDown){
+				mapIndex++;
+				goingDown = mapIndex == numRows-1?false:true;
+			}else{
+				mapIndex--;
+				goingDown = mapIndex == 0 ? true:false;
+			}
+			index++;
+		}
+		String result = "";
+		for(int i=0; i<numRows;i++){
+		    if(!map.containsKey(i)){break;}
+			result=result.concat(map.get(i));
+		}
+        return result;
+    }
+	
+	
 }
