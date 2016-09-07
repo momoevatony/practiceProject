@@ -12,13 +12,14 @@ public class TwoSums {
 		System.out.println(Arrays.toString(twoSum));
 	}
 	
-	static int[] twoSum(int[]input, int sum){
+	//Accepted 9.6.2016
+	static int[] twoSum(int[]nums, int target){
 		int[] result = new int[2];
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		for (int i=0; i<input.length; i++){
-			Integer index = map.get(sum-input[i]);
+		for (int i=0; i<nums.length; i++){
+			Integer index = map.get(target-nums[i]);
 			if(index == null){
-				map.put(input[i], i);   // !!!!!!
+				map.put(nums[i], i);   // !!!!!!
 			}else {
 				return new int[]{index, i}; 
 			}

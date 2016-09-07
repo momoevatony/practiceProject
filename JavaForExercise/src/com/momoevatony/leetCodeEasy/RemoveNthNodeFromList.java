@@ -30,6 +30,7 @@ public class RemoveNthNodeFromList {
 		print (removeDuplicate (node1));
 	}
 	
+	//Accepted 9.6.2016
 	public static Node removeNth (Node head, int n){
 		if (head == null) {return null;}
 		

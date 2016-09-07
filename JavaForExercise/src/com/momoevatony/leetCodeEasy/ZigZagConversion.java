@@ -74,34 +74,30 @@ public class ZigZagConversion {
 		}
 	}
 	
+	//Accepted 9.6.2016
 	public String convert(String s, int numRows) {
-		if(s.length()<=1){return s;}
-		int index = 0;
-		int mapIndex = 0;
-		boolean goingDown = true;
-		HashMap<Integer, String> map = new HashMap<Integer, String>();
-		while(index<s.length()){
-			char curr = s.charAt(index);
-			if(map.containsKey(mapIndex)){
-				map.put(mapIndex, map.get(mapIndex).concat(Character.toString(curr)));
-			}else{
-				map.put(mapIndex, Character.toString(curr));
-			}
-			if(goingDown){
-				mapIndex++;
-				goingDown = mapIndex == numRows-1?false:true;
-			}else{
-				mapIndex--;
-				goingDown = mapIndex == 0 ? true:false;
-			}
-			index++;
+		if(s.length()<=1 || numRows<=1){return s;}
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i=0;i<s.length();i=i+2*numRows-2){
+			sb.append(s.charAt(i));
 		}
-		String result = "";
-		for(int i=0; i<numRows;i++){
-		    if(!map.containsKey(i)){break;}
-			result=result.concat(map.get(i));
+		int corr = 2;
+		for(int i=1;i<numRows-1;i++){
+			int j=i;
+			while(j<s.length()){
+				sb.append(s.charAt(j));
+				j+=2*numRows-2-corr;
+				if(j>=s.length()){break;}
+				sb.append(s.charAt(j));
+				j+=corr;
+			}
+			corr+=2;
 		}
-        return result;
+		for(int i=numRows-1;i<s.length();i+=2*numRows-2){
+			sb.append(s.charAt(i));
+		}
+        return sb.toString();
     }
 	
 	
