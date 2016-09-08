@@ -11,6 +11,8 @@ public class ClimbingStairs {
 		
 		return climbStairs(n-1)+climbStairs(n-2);
 	}
+	
+	//Accepted 9.7.2016
 	static int climbStairs2(int n) {
         if(n==0||n==1||n==2)
             return n;

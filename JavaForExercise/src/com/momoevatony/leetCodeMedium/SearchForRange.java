@@ -10,15 +10,24 @@ public class SearchForRange {
 		System.out.println(Arrays.toString(searchRange(nums,target)));
 	}
 	
+	//Accetped 9.7.2016
 	public static int[] searchRange(int[] nums, int target) {
 		if(target<nums[0] || target>nums[nums.length-1]){return new int[]{-1,-1};}
 		int start = 0;
 		int end = nums.length-1;
 		int mid = (start+end)/2;
 		if(nums.length==1){return new int[]{0,0};}
-		if(nums.length==2){start=nums[0]==target?0:1; end=nums[1]==target?1:0;}
+		if(nums.length==2){
+		    if(nums[0]==target){
+				if(nums[1]==target){return new int[]{0,1};}
+				else {return new int[]{0,0};}
+			}
+			if(nums[1]==target){
+				return new int[]{1,1};
+			}
+			return new int[]{-1,-1};}
 		while(start<end-1){
-			System.out.println("start: "+start+" mid: "+mid+" end: "+end);
+			//System.out.println("start: "+start+" mid: "+mid+" end: "+end);
 			if(nums[mid] == target || nums[start] == target || nums[end] == target){
 				start= nums[mid] == target? mid : nums[start] == target? start:end;
 				end= nums[mid] == target? mid : nums[start] == target? start:end;
@@ -34,7 +43,7 @@ public class SearchForRange {
 				mid =  (start+end)/2;
 			}
 		}
-		return new int[]{start,end};
+		return new int[]{-1,-1};
     }
 
 }

@@ -5,6 +5,7 @@ public class AddBinary {
 		System.out.println(addBinary("11","1"));
 	}
 	
+	//Accepted 9.7.2016
 	public static String addBinary(String a, String b){
 		int indexA = a.length();
 		int indexB = b.length();

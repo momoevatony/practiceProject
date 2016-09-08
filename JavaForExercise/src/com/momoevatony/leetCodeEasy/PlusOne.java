@@ -8,16 +8,16 @@ public class PlusOne {
 		System.out.println(Arrays.toString(plusOne(array)));
 		
 	}
-	
-	static int[] plusOne (int[] array){
+	//Accepted 9.7.2016
+	static int[] plusOne (int[] digits){
 		int carry = 1;
-		for (int i=array.length-1;i>0;i--){
-			if (array[i] ==9 && carry == 1){array[i]=0; carry=1;}
-			else if (carry ==1) {array[i]++;carry =0;}
+		for (int i=digits.length-1;i>=0;i--){
+			if (digits[i] ==9 && carry == 1){digits[i]=0; carry=1;}
+			else if (carry ==1) {digits[i]++;carry =0;}
 		}
-		if(carry == 1){int[] res = new int[array.length+1]; res[0]=1; return res;} 
+		if(carry == 1){int[] res = new int[digits.length+1]; res[0]=1; return res;} 
 		
-		return array;
+		return digits;
 	}
 
 }
