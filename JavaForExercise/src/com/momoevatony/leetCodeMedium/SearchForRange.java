@@ -15,7 +15,7 @@ public class SearchForRange {
 		if(target<nums[0] || target>nums[nums.length-1]){return new int[]{-1,-1};}
 		int start = 0;
 		int end = nums.length-1;
-		int mid = (start+end)/2;
+		int mid = (start+end)/2;	
 		if(nums.length==1){return new int[]{0,0};}
 		if(nums.length==2){
 		    if(nums[0]==target){
