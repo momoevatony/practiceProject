@@ -3,6 +3,7 @@ package com.momoevatony.leetCodeMedium;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +15,9 @@ public class LargestNumber {
 		Map<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
 		
 		for(int i=0;i<nums.length;i++){
-			int curr = nums[i];
-			while(curr>10){
-				curr=curr/10;
-			}
+			int curr = Character.getNumericValue(Integer.toString(nums[i]).charAt(0));
 			if(map.containsKey(curr)){
-				List<Integer> tempList = map.get(curr);
+				List<Integer> tempList = new ArrayList<Integer>(map.get(curr));
 				tempList.add(nums[i]);
 				map.put(curr,tempList);
 			}else{
@@ -29,7 +27,7 @@ public class LargestNumber {
 		for (int j=9;j>=0;j--){
 			if(!map.containsKey(j)){continue;}
 			List<Integer> list = map.get(j);
-			Collections.sort(list);
+			Collections.sort(list, new Comparator<Integer>());
 			for(int k:list){
 				sb.append(Integer.toString(k));
 			}
