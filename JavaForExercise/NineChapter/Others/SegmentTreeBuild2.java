@@ -1,4 +1,4 @@
-package course1;
+package Others;
 
 import java.util.Arrays;
 import java.util.Collections;

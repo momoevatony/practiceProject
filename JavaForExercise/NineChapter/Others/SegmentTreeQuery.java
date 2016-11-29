@@ -1,15 +1,16 @@
-package course1;
+package Others;
 
 public class SegmentTreeQuery {
 	
+	
+	//Accepted 11/29/2016 7671 ms
 	public int query(SegmentTreeNode root, int start, int end) {
         // write your code here
-		if(start>root.end || end < root.start){return Integer.MAX_VALUE;}
+		if(start>root.end || end < root.start){return Integer.MIN_VALUE;}
 		if(root.start>=start && root.end<=end){return root.max;}
-		
-		int mid = (root.start+root.end)/2;
-		//TODO
-		return -1;
+		int leftMax = query(root.left, start, end);
+		int rightMax = query(root.right, start, end);
+		return leftMax>rightMax?leftMax:rightMax;
     }
 	
 	public class SegmentTreeNode {

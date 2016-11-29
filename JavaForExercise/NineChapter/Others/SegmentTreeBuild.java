@@ -1,4 +1,4 @@
-package course1;
+package Others;
 
 public class SegmentTreeBuild {
 	
