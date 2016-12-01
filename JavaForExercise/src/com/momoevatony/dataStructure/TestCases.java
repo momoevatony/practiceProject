@@ -1,5 +1,7 @@
 package com.momoevatony.dataStructure;
 
+import java.util.Arrays;
+
 public class TestCases {
 	public static void main (String args[]){
 		/*Stack Test
@@ -28,9 +30,23 @@ public class TestCases {
 		System.out.println(testQueue.isEmpty());
 		*/
 		
+		
+		/*
 		String input = "t";
 		System.out.println(test(input));
+		*/
 		
+		//Min Heap Test
+		int[] data = {14,13,16,10,12,9,11,6,8,7,4,3,1};
+		Heap heap = new MinHeap(data);
+		heap.build();
+		System.out.println(Arrays.toString(heap.data));
+		
+		heap.insert(5);
+		System.out.println(Arrays.toString(heap.data));
+		
+		heap.remove();
+		System.out.println(Arrays.toString(heap.data));
 	}
 	
 	static String test(String input){
