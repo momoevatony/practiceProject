@@ -34,7 +34,7 @@ public class Trie {
 		}
 	}
 	
-	public int findCound(TrieNode node, String str){
+	public int findCount(TrieNode node, String str){
 		if(str.length()==0 || str == null){return 0;}
 		
 		char [] letters = str.toCharArray();
@@ -46,7 +46,6 @@ public class Trie {
 				node = node.child[position];
 			}
 		}
-		
 		return node.num;
 	}
 }
