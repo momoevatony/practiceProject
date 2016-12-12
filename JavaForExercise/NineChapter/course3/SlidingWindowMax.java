@@ -1,59 +1,29 @@
 package course3;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-
-public class SlidingWindowMedian {
+public class SlidingWindowMax {
 	
-	//Neeeeeeeeed to do it again!!!!
-	public ArrayList<Integer> medianSlidingWindow(int[] nums, int k) {
+	//Accepted 12.10.2016
+	public ArrayList<Integer> maxSlidingWindow(int[] nums, int k) {
         // write your code here
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		if(nums.length<k || k<=0){return list;}
+		if(nums.length<=0 || k<=0){return list;}
 		if(k==1){for(int i=0;i<nums.length;i++){list.add(nums[i]);}return list;}
-		HashHeap minHeap = new HashHeap("min");
-		HashHeap maxHeap = new HashHeap("max");
-		int median = nums[0];
-		for(int i=0; i<nums.length;i++){
-			if(i!=0){
-				if(nums[i]>median){
-					minHeap.add(nums[i]);
-				}else{
-					maxHeap.add(nums[i]);
-				}
-			}
+		
+		HashHeap maxHashHeap = new HashHeap("max");
+		for(int i=0; i<nums.length; i++){
+			maxHashHeap.add(nums[i]);
 			if(i>=k){
-				if(median == nums[i-k]){
-					if(maxHeap.size()>0){
-						median = maxHeap.poll();
-					}else if(minHeap.size()>0){
-						median = minHeap.poll();
-					}
-				}else if(median < nums[i-k]){
-					minHeap.delete(nums[i-k]);
-				}else{
-					maxHeap.delete(nums[i-k]);
-				}
+				maxHashHeap.delete(nums[i-k]);
 			}
-
-			while(maxHeap.size()>minHeap.size()+1){
-				minHeap.add(median);
-				median = maxHeap.poll();
-			}
-			while(minHeap.size()>maxHeap.size()+1){
-				maxHeap.add(median);
-				median = minHeap.poll();
-			}
-			
 			if(i>=k-1){
-				list.add(median);
+				list.add(maxHashHeap.peek());
 			}
 		}
-		
 		return list;
     }
-	
 	class HashHeap {
 	    ArrayList<Integer> heap;
 	    String mode;
