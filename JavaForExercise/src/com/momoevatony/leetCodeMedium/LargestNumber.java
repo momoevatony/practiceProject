@@ -27,7 +27,7 @@ public class LargestNumber {
 		for (int j=9;j>=0;j--){
 			if(!map.containsKey(j)){continue;}
 			List<Integer> list = map.get(j);
-			Collections.sort(list, new Comparator<Integer>());
+			Collections.sort(list);
 			for(int k:list){
 				sb.append(Integer.toString(k));
 			}
