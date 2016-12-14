@@ -2,23 +2,34 @@ package course5;
 
 public class MaximumProductSubarray {
 	
-	//TODO
+	//Accepted 12.14.2016 3508ms
 	public int maxProduct(int[] nums) {
         // write your code here
 		if(nums.length==0){return 0;}
-		int[] map = new int[nums.length];
-		int[] abs = new int[nums.length];
+        if(nums.length==1){return nums[0];}
+		
+		int[] posMax = new int[nums.length];
+		int[] negMax = new int[nums.length];
+		
 		int max = nums[0];
-		int absMax = nums[0];
-		map[0] = nums[0];
-		abs[0] = nums[0];
-		for(int i=0; i<nums.length;i++){
-			if(nums[i] ==0){map[i]=0;abs[i]=0;continue;}
-			map[i] = map[i-1]*nums[i]<nums[i] ? nums[i]:map[i-1]*nums[i];
-			abs[i] = abs[i-1]==0?nums[i]:nums[i]*abs[i-1];
-			max = Math.max(map[i],max);
-			absMax = Math.max(abs[i], absMax);
+		posMax[0] = nums[0];
+		negMax[0] = nums[0];
+		
+		for(int i=1; i<nums.length;i++){
+			if(nums[i]>0){
+				posMax[i] = Math.max(posMax[i-1]*nums[i], nums[i]);
+				negMax[i] = Math.min(negMax[i-1]*nums[i], nums[i]);
+			}
+			else if(nums[i]<0){
+				posMax[i] = Math.max(negMax[i-1]*nums[i], nums[i]);
+				negMax[i] = Math.min(posMax[i-1]*nums[i], nums[i]);
+			}else{
+				posMax[i] = 0;
+				negMax[i] = 0;
+			}
+			max = Math.max(posMax[i], max);
 		}
-		return Math.max(max,absMax);
+		
+		return max;
     }
 }
