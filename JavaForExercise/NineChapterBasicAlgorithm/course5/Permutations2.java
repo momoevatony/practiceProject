@@ -1,11 +1,12 @@
 package course5;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Permutations {
-
-	//accepted 3.13.2017 1675ms
+public class Permutations2 {
+	
+	//accepted 3.13.2017 1627ms
 	public List<List<Integer>> permuteUnique(int[] nums) {
         // Write your code here
 		List<List<Integer>> list = new ArrayList<>();
@@ -15,7 +16,7 @@ public class Permutations {
 			list.add(innerList);
 			return list;
 		}
-		
+		Arrays.sort(nums);
 		boolean[] added = new boolean[nums.length];
 		DFS(list, innerList, nums, 0, added);
 		
@@ -29,7 +30,7 @@ public class Permutations {
 		}
 		
 		for(int i = 0; i < nums.length; i++) {
-			if(added[i]) {
+			if(added[i] || (i != 0 && (nums[i] == nums[i-1] && !added[i-1]))) {
 				continue;
 			}
 
@@ -40,5 +41,4 @@ public class Permutations {
 			added[i] = false;
 		}
 	}
-
 }
