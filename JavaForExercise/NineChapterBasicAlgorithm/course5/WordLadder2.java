@@ -10,6 +10,8 @@ import java.util.Queue;
 import java.util.Set;
 
 public class WordLadder2 {
+	
+	//Accepted 3.14.2017 3634ms
 	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
         // write your code here 
 		List<List<String>> list = new ArrayList<>();
@@ -26,7 +28,9 @@ public class WordLadder2 {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		createMap(start, end, dict, map);
 		if(!map.containsKey(start)) {return list;}
-		int startDegree = map.get(start);
+		
+		innerList.add(start);
+		findPaths(start, end, dict, map, list, innerList);
 		
 		return list;
     }
@@ -48,17 +52,15 @@ public class WordLadder2 {
 					for( char ch = 'a'; ch <= 'z'; ch++) {
 						String next = curr.substring(0, index) + ch + curr.substring(index + 1,curr.length());
 						if(added.contains(next)) {continue;}
-						if(next.equals(end)) {
+						if(next.equals(start)) {
 							map.put(next, degree);
 							added.add(next);
-							System.out.println("found end point: "+next+" with degree: "+degree);
 							break;
 						}
 						if(dict.contains(next)) {
 							queue.offer(next);
 							map.put(next, degree);
 							added.add(next);
-							System.out.println("found: "+next+" with degree: "+degree);
 						}
 					}
 				}
@@ -66,8 +68,27 @@ public class WordLadder2 {
 		}
 	}
 	
-	private void getPaths(String start, String end, Set<String> dict) {
-		
+	private void findPaths(String curr, String end, Set<String> dict, Map<String, Integer> map, 
+						   List<List<String>> list, List<String> innerList) {
+		for(int index = 0; index < curr.length(); index++) {
+			for(char ch = 'a'; ch <= 'z'; ch++) {
+				String next = curr.substring(0, index) + ch + curr.substring(index + 1,curr.length());
+				
+				if(next.equals(end)) {
+					innerList.add(end);
+					list.add(new ArrayList<String>(innerList));
+					innerList.remove(innerList.size() - 1);
+					continue;
+				}
+				
+				if(!dict.contains(next) || !map.containsKey(next) || map.get(next) != map.get(curr) - 1) {
+					continue;
+				}
+				
+				innerList.add(next);
+				findPaths(next, end, dict, map, list, innerList);
+				innerList.remove(innerList.size() - 1);
+			}
+		}
 	}
-	
 }
