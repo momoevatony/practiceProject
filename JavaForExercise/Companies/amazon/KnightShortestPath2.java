@@ -1,4 +1,4 @@
-package tagAmazon;
+package amazon;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -6,7 +6,7 @@
 	<classpathentry kind="src" path="NineChapterBasicAlgorithm"/>
 	<classpathentry kind="src" path="NineChapterSystemDesign"/>
 	<classpathentry kind="src" path="NineChatperHighFreq"/>
-	<classpathentry kind="src" path="Amazon"/>
+	<classpathentry kind="src" path="Companies"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
