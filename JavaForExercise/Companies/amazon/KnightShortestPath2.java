@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class KnightShortestPath2 {
 	
-	//90% passed. Need to double check. Official answer is not correct.
+	//Accepted 5.13.2017 9495ms
 	public int shortestPath2(boolean[][] grid) {
         // Write your code here
         if (grid.length == 1 && grid[0].length == 1) {
